@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rust Cheat Sheet ☕</title>
+    <style>
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f3eacb;
+            color: #4b3832;
+        }
+
+ 
+        header {
+            background-color: #d9c9bd;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 5px solid #4b3832;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        header span {
+            font-size: 3rem;
+            margin-right: 10px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #6c584c;
+        }
+
+        pre {
+            background-color: #f4ede3;
+            border-left: 4px solid #a68a79;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1rem;
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+
+        code {
+            color: #4b3832;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            margin: 5px 0;
+            color: #6c584c;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #6c584c;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <span>☕</span>
+        <h1>Rust Cheat Sheet</h1>
+    </header>
+
+    <div class="container">
+        <h2>Variables</h2>
+        <p>Variables are immutable by default in Rust. Use the <code>mut</code> keyword to make them mutable (changeable).</p>
+        <pre><code>// Immutable variable (cannot change)
+      let age = 25;
+      println!("Your age is: {}", age);
+      
+      // Mutable variable (can change)
+      let mut score = 10;
+      println!("Initial score: {}", score);
+      score = 20; // Update the value of score
+      println!("Updated score: {}", score);
+      </code></pre>
+      
+        <h2>Functions</h2>
+        <p>Functions are created using the <code>fn</code> keyword. They can accept parameters and return values.</p>
+        <pre><code>fn main() {
+          greet(); // Call the greet function
+          let result = add_numbers(5, 10);
+          println!("The result of adding 5 and 10 is: {}", result);
+      }
+      
+      // Function without parameters that prints a message
+      fn greet() {
+          println!("Hello! Welcome to Rust programming.");
+      }
+      
+      // Function with parameters and a return value
+      fn add_numbers(a: i32, b: i32) -> i32 {
+          a + b
+      }
+      </code></pre>
+      
+        <h2>Printing Values</h2>
+        <p>Rust uses the <code>println!</code> macro to display messages and variables in the console.</p>
+        <pre><code>let name = "Alice";
+      let age = 30;
+      println!("My name is {} and I'm {} years old.", name, age);
+      </code></pre>
+      
+        <h2>Using Match Statements</h2>
+        <p>Instead of using <code>if/else</code>, Rust provides the powerful <code>match</code> statement for handling multiple conditions.</p>
+        <pre><code>fn main() {
+          let number = 3;
+      
+          match number {
+              1 => println!("You picked one."),
+              2 => println!("You picked two."),
+              3 => println!("You picked three."),
+              _ => println!("You picked something else."), // Default case
+          }
+      
+          let age = 18;
+      
+          match age {
+              0..=17 => println!("You are a minor."),
+              18..=59 => println!("You are an adult."),
+              60..=120 => println!("You are a senior."),
+              _ => println!("Invalid age."),
+          }
+      }
+      </code></pre>
+      
+        <h2>Tuples</h2>
+        <p>A <code>tuple</code> allows you to store multiple values of different types in one structure.</p>
+        <pre><code>fn main() {
+          let person = ("Alice", 30, 5.6); // A tuple with a string, integer, and float
+          let (name, age, height) = person; // Destructuring the tuple
+          println!("Name: {}, Age: {}, Height: {} meters", name, age, height);
+      
+          // Access values directly using their index
+          println!("Name: {}, Age: {}", person.0, person.1);
+      }
+      </code></pre>
+      
+        <h2>Structs</h2>
+        <p><code>struct</code> allows you to group related data together. Think of it like defining a blueprint.</p>
+        <pre><code>struct Person {
+          name: String,
+          age: u32,
+          height: f32,
+      }
+      
+      fn main() {
+          let person = Person {
+              name: String::from("Bob"),
+              age: 40,
+              height: 5.9,
+          };
+      
+          println!("Name: {}, Age: {}, Height: {}", person.name, person.age, person.height);
+      }
+      </code></pre>
+      
+        <h2>Implementing Functions for Structs</h2>
+        <p>You can associate functions with structs by creating an <code>impl</code> block (implementation block).</p>
+        <pre><code>struct Rectangle {
+          width: u32,
+          height: u32,
+      }
+      
+      impl Rectangle {
+          // Method to calculate the area of a rectangle
+          fn area(&self) -> u32 {
+              self.width * self.height
+          }
+      
+          // Method to display the rectangle's dimensions
+          fn display(&self) {
+              println!("Rectangle: {} x {}", self.width, self.height);
+          }
+      }
+      
+      fn main() {
+          let rect = Rectangle { width: 10, height: 20 };
+          rect.display();
+          println!("The area of the rectangle is: {}", rect.area());
+      }
+      </code></pre>
+      
+        <h2>Loops</h2>
+        <p>You can use loops to repeat sections of code. Rust has <code>loop</code>, <code>while</code>, and <code>for</code>.</p>
+        <pre><code>// Loop Example
+      let mut count = 0;
+      loop {
+          if count == 3 {
+              break; // Stop the loop
+          }
+          println!("Count is: {}", count);
+          count += 1;
+      }
+      
+      // While Example
+      let mut num = 0;
+      while num < 5 {
+          println!("Number is: {}", num);
+          num += 1;
+      }
+      
+      // For Loop Example
+      for i in 1..5 { // The range 1..5 includes 1, 2, 3, 4
+          println!("i is: {}", i);
+      }
+      </code></pre>
+      
+        <h2>Ownership and Borrowing</h2>
+        <p>In Rust, each piece of data has an <i>owner</i>, and memory is managed through ownership, borrowing, and references.</p>
+        <pre><code>fn main() {
+          let s1 = String::from("hello");
+          let s2 = s1; // Ownership moves to s2, so s1 is no longer valid
+      
+          // println!("{}", s1); // This will cause an error
+      
+          let s3 = String::from("world");
+          let s4 = &s3; // Borrow a reference of s3
+          println!("s3: {}, s4: {}", s3, s4); // s3 is still valid
+      }
+      </code></pre>
+      
+        <h2>Collections: Vectors</h2>
+        <p><code>vec!</code> is used to create a dynamic collection of elements.</p>
+        <pre><code>fn main() {
+          let mut numbers = vec![1, 2, 3];
+          numbers.push(4); // Add an element to the vector
+          numbers.push(5);
+      
+          println!("Vector elements: {:?}", numbers);
+      
+          for num in &numbers {
+              println!("{}", num);
+          }
+      }
+      </code></pre>
+      
+      </div>
+
+    <footer>
+        Made with (Frank Walkers ❤️) and Rust. Happy coding!
+    </footer>
+</body>
+
+</html>
