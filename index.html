@@ -95,181 +95,144 @@
     </header>
     
 
-    <div class="container">
-        <h2>Variables</h2>
-        <p>Variables are immutable by default in Rust. Use the <code>mut</code> keyword to make them mutable (changeable).</p>
-        <pre><code>// Immutable variable (cannot change)
-      let age = 25;
-      println!("Your age is: {}", age);
-      
-      // Mutable variable (can change)
-      let mut score = 10;
-      println!("Initial score: {}", score);
-      score = 20; // Update the value of score
-      println!("Updated score: {}", score);
-      </code></pre>
-      
-        <h2>Functions</h2>
-        <p>Functions are created using the <code>fn</code> keyword. They can accept parameters and return values.</p>
-        <pre><code>fn main() {
-          greet(); // Call the greet function
-          let result = add_numbers(5, 10);
-          println!("The result of adding 5 and 10 is: {}", result);
-      }
-      
-      // Function without parameters that prints a message
-      fn greet() {
-          println!("Hello! Welcome to Rust programming.");
-      }
-      
-      // Function with parameters and a return value
-      fn add_numbers(a: i32, b: i32) -> i32 {
-          a + b
-      }
-      </code></pre>
-      
-        <h2>Printing Values</h2>
-        <p>Rust uses the <code>println!</code> macro to display messages and variables in the console.</p>
-        <pre><code>let name = "Alice";
-      let age = 30;
-      println!("My name is {} and I'm {} years old.", name, age);
-      </code></pre>
-      
-        <h2>Using Match Statements</h2>
-        <p>Instead of using <code>if/else</code>, Rust provides the powerful <code>match</code> statement for handling multiple conditions.</p>
-        <pre><code>fn main() {
-          let number = 3;
-      
-          match number {
-              1 => println!("You picked one."),
-              2 => println!("You picked two."),
-              3 => println!("You picked three."),
-              _ => println!("You picked something else."), // Default case
-          }
-      
-          let age = 18;
-      
-          match age {
-              0..=17 => println!("You are a minor."),
-              18..=59 => println!("You are an adult."),
-              60..=120 => println!("You are a senior."),
-              _ => println!("Invalid age."),
-          }
-      }
-      </code></pre>
-      
-        <h2>Tuples</h2>
-        <p>A <code>tuple</code> allows you to store multiple values of different types in one structure.</p>
-        <pre><code>fn main() {
-          let person = ("Alice", 30, 5.6); // A tuple with a string, integer, and float
-          let (name, age, height) = person; // Destructuring the tuple
-          println!("Name: {}, Age: {}, Height: {} meters", name, age, height);
-      
-          // Access values directly using their index
-          println!("Name: {}, Age: {}", person.0, person.1);
-      }
-      </code></pre>
-      
-        <h2>Structs</h2>
-        <p><code>struct</code> allows you to group related data together. Think of it like defining a blueprint.</p>
-        <pre><code>struct Person {
-          name: String,
-          age: u32,
-          height: f32,
-      }
-      
-      fn main() {
-          let person = Person {
-              name: String::from("Bob"),
-              age: 40,
-              height: 5.9,
-          };
-      
-          println!("Name: {}, Age: {}, Height: {}", person.name, person.age, person.height);
-      }
-      </code></pre>
-      
-        <h2>Implementing Functions for Structs</h2>
-        <p>You can associate functions with structs by creating an <code>impl</code> block (implementation block).</p>
-        <pre><code>struct Rectangle {
-          width: u32,
-          height: u32,
-      }
-      
-      impl Rectangle {
-          // Method to calculate the area of a rectangle
-          fn area(&self) -> u32 {
-              self.width * self.height
-          }
-      
-          // Method to display the rectangle's dimensions
-          fn display(&self) {
-              println!("Rectangle: {} x {}", self.width, self.height);
-          }
-      }
-      
-      fn main() {
-          let rect = Rectangle { width: 10, height: 20 };
-          rect.display();
-          println!("The area of the rectangle is: {}", rect.area());
-      }
-      </code></pre>
-      
-        <h2>Loops</h2>
-        <p>You can use loops to repeat sections of code. Rust has <code>loop</code>, <code>while</code>, and <code>for</code>.</p>
-        <pre><code>// Loop Example
-      let mut count = 0;
-      loop {
-          if count == 3 {
-              break; // Stop the loop
-          }
-          println!("Count is: {}", count);
-          count += 1;
-      }
-      
-      // While Example
-      let mut num = 0;
-      while num < 5 {
-          println!("Number is: {}", num);
-          num += 1;
-      }
-      
-      // For Loop Example
-      for i in 1..5 { // The range 1..5 includes 1, 2, 3, 4
-          println!("i is: {}", i);
-      }
-      </code></pre>
-      
-        <h2>Ownership and Borrowing</h2>
-        <p>In Rust, each piece of data has an <i>owner</i>, and memory is managed through ownership, borrowing, and references.</p>
-        <pre><code>fn main() {
-          let s1 = String::from("hello");
-          let s2 = s1; // Ownership moves to s2, so s1 is no longer valid
-      
-          // println!("{}", s1); // This will cause an error
-      
-          let s3 = String::from("world");
-          let s4 = &s3; // Borrow a reference of s3
-          println!("s3: {}, s4: {}", s3, s4); // s3 is still valid
-      }
-      </code></pre>
-      
-        <h2>Collections: Vectors</h2>
-        <p><code>vec!</code> is used to create a dynamic collection of elements.</p>
-        <pre><code>fn main() {
-          let mut numbers = vec![1, 2, 3];
-          numbers.push(4); // Add an element to the vector
-          numbers.push(5);
-      
-          println!("Vector elements: {:?}", numbers);
-      
-          for num in &numbers {
-              println!("{}", num);
-          }
-      }
-      </code></pre>
-      
-      </div>
+<div class="container">
+    <h2>Variables</h2>
+    <p>Variables are used in Rust to store values, like numbers or text. By default, variables in Rust are <b>immutable</b>, meaning you cannot change them after they are created. To make them <b>mutable</b>, use the <code>mut</code> keyword.</p>
+    <pre><code class="rust">// Immutable variable (cannot change)
+let age = 25; // This value cannot be changed
+println!("Your age is: {}", age);
+
+// Mutable variable (can change)
+let mut score = 10; // This can be changed later
+println!("Initial score: {}", score);
+score = 20; // Update the value
+println!("Updated score: {}", score);
+</code></pre>
+
+    <h2>How to Set a Variable's Value</h2>
+    <p>To set a variable, you use the <code>let</code> keyword, followed by the name of the variable, an equals sign (<code>=</code>), and the value you want to store.</p>
+    <pre><code class="rust">// Example of setting a value
+let name = "Alice"; // This stores the text "Alice" in the variable named 'name'
+println!("Hello, {}!", name);
+</code></pre>
+
+    <h2>Functions</h2>
+    <p>A function in Rust is a block of reusable code. You create a function using the <code>fn</code> keyword, followed by the function's name and parentheses. You can then call the function from other parts of your program.</p>
+    <pre><code class="rust">fn main() {
+    say_hello(); // Calls the 'say_hello' function
+}
+
+// A simple function that prints a message
+fn say_hello() {
+    println!("Hello from Rust!");
+}
+</code></pre>
+
+    <h3>Adding a Parameter to a Function</h3>
+    <p>You can create a function that accepts <b>parameters</b> (input values). In the parentheses, define the name of the parameter, followed by its <b>type</b>.</p>
+    <pre><code class="rust">fn main() {
+    greet("Alice"); // Pass the value "Alice" to the function
+}
+
+// Function with a parameter
+fn greet(name: &str) { // Expects a string slice as input
+    println!("Hello, {}!", name);
+}
+</code></pre>
+
+    <h2>Types</h2>
+    <p>Rust is a <b>statically typed language</b>, meaning every value has a type, and you must specify or infer the type when creating variables or parameters. Examples of basic types:</p>
+    <ul>
+        <li><b>i32</b>: A 32-bit integer (whole number).</li>
+        <li><b>f64</b>: A 64-bit floating-point number (with decimals).</li>
+        <li><b>bool</b>: A boolean for true/false values.</li>
+        <li><b>char</b>: A single character like 'A' or '@'.</li>
+    </ul>
+    <pre><code class="rust">// Examples of types
+let number: i32 = 42; // Integer
+let price: f64 = 19.99; // Decimal (floating-point)
+let is_active: bool = true; // Boolean (true/false)
+let letter: char = 'A'; // Single character
+</code></pre>
+
+    <h2>Returning Values from Functions</h2>
+    <p>Functions can also return a value by using the <code>-></code> symbol after the parameter list to indicate the return type.</p>
+    <pre><code class="rust">fn main() {
+    let sum = add(5, 10); // Call the function and capture the return value
+    println!("The sum is: {}", sum);
+}
+
+// Function that takes two numbers and returns their sum
+fn add(a: i32, b: i32) -> i32 {
+    a + b // No semicolon == value returned
+}
+</code></pre>
+
+    <h2>Exploring the <code>println!</code> Macro</h2>
+    <p>The <code>println!</code> macro is used to print information to the console. You can include placeholders like <code>{}</code> to display variables.</p>
+    <pre><code class="rust">let animal = "cat";
+let age = 2;
+
+println!("I have a {} that is {} years old.", animal, age);
+</code></pre>
+
+    <h2>Tuples</h2>
+    <p>A tuple lets you group multiple values into one. Each value can have a different type. Use parentheses to create a tuple, and access elements by their <b>index</b>.</p>
+    <pre><code class="rust">let person = ("Alice", 30, 5.6);
+println!("Name: {}, Age: {}, Height: {}", person.0, person.1, person.2);
+</code></pre>
+
+    <h2>Structs</h2>
+    <p>Structs are like "blueprints" for creating custom types. Use them to group related data.</p>
+    <pre><code class="rust">struct Car {
+    brand: String,
+    year: u32,
+    is_sports_car: bool,
+}
+
+fn main() {
+    let my_car = Car {
+        brand: String::from("Ferrari"),
+        year: 2022,
+        is_sports_car: true,
+    };
+    println!(
+        "I drive a {}. It's from {}. Sports car? {}",
+        my_car.brand, my_car.year, my_car.is_sports_car
+    );
+}
+</code></pre>
+
+    <h2>Loops</h2>
+    <p>Loops repeat a block of code multiple times. Rust provides three types of loops:</p>
+    <ul>
+        <li><b>loop</b>: A simple infinite loop until you specify <code>break</code>.</li>
+        <li><b>while</b>: Repeats while a condition is true.</li>
+        <li><b>for</b>: Iterates over a range or items.</li>
+    </ul>
+    <pre><code class="rust">// Loop Example
+let mut count = 0;
+loop {
+    if count == 3 {
+        break; // Stop the loop
+    }
+    println!("Count is: {}", count);
+    count += 1;
+}
+
+// While Example
+let mut num = 0;
+while num < 5 {
+    println!("Number is: {}", num);
+    num += 1;
+}
+
+// For Loop Example
+for i in 1..5 { // `..` means "up to but not including 5"
+    println!("i is: {}", i);
+}
+</code></pre>
+</div>
 
       <footer>
         <p>Made with franks ❤️ and Rust. Happy coding!</p>
